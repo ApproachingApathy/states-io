@@ -1,0 +1,18 @@
+type Nation {
+	id: ID!
+	name: String!
+	population: Int!
+	owner: User!
+}
+
+type User {
+	id: ID!
+	email: String!
+	password: String!
+	nations: [Nation]!
+}
+
+type Query {
+	nations: [Nation]!
+	nation(id: ID!): Nation
+}
