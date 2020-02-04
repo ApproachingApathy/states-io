@@ -15,4 +15,21 @@ type User {
 type Query {
 	nations: [Nation]!
 	nation(id: ID!): Nation
+	users: [User]!
+	user(id: ID!): User
+}
+
+input UserCreateInput {
+	email: String!
+	password: String!
+}
+
+input NationCreateInput {
+	name: String!
+	owner: ID!
+}
+
+type Mutation {
+	createUser(data: UserCreateInput): User!
+	createNation(data: NationCreateInput): Nation!
 }
