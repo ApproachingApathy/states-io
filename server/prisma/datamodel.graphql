@@ -1,0 +1,13 @@
+type User {
+	id: ID! @id
+	email: String!
+	password: String!
+	nations: [Nation]! @relation(link: INLINE)
+}
+
+type Nation {
+	id: ID! @id
+	name: String!
+	population: Int!
+	owner: User!
+}
