@@ -4,6 +4,8 @@ const resolverModulesPath = path.resolve(
 	process.env.RESOLVER_MODULES_DIR || "graphql/resolvers"
 );
 
+console.log("Building Resolvers...");
+
 const dir = fs.readdirSync(resolverModulesPath);
 let resolversArray = [];
 dir.forEach(resolverModuleDirectory => {
@@ -31,7 +33,7 @@ dir.forEach(resolverModuleDirectory => {
 	}
 });
 
-console.log(resolversArray);
+// console.log(resolversArray);
 
 let rootResolver = {};
 resolversArray.forEach(resolverModuleObj => {
@@ -49,4 +51,4 @@ resolversArray.forEach(resolverModuleObj => {
 
 console.log(rootResolver);
 
-// console.log(dir);
+module.exports = rootResolver;

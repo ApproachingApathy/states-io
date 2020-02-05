@@ -5,7 +5,7 @@ function users(parent, args, context, info) {
 }
 
 function user(parent, args, context, info) {
-	return prisma.user(args.id);
+	return prisma.user({ id: args.id });
 }
 
 module.exports = {

@@ -4,7 +4,7 @@ function nations(parent, args, context, info) {
 }
 
 function nation(parent, args, context, info) {
-	return prisma.nation(args.id);
+	return prisma.nation({ id: args.id });
 }
 
 module.exports = {

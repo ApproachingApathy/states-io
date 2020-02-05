@@ -7,6 +7,7 @@ type Nation {
 
 type User {
 	id: ID!
+	username: String!
 	email: String!
 	password: String!
 	nations: [Nation]!
@@ -19,7 +20,16 @@ type Query {
 	user(id: ID!): User
 }
 
+# APP Only Definitions
+type AuthReturn {
+	user: User
+	isLoginSuccessful: Bool!
+	error: String!
+	token: String
+}
+
 input UserCreateInput {
+	username: String!
 	email: String!
 	password: String!
 }
@@ -32,4 +42,7 @@ input NationCreateInput {
 type Mutation {
 	createUser(data: UserCreateInput): User!
 	createNation(data: NationCreateInput): Nation!
+	deleteUser(id: ID!): User!
+	deleteNation(id: ID!): Nation!
+	authLogin(email: String!, password: String!): AuthReturn
 }
