@@ -151,6 +151,8 @@ export type NationOrderByInput =
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "username_ASC"
+  | "username_DESC"
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
@@ -218,6 +220,20 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  username?: Maybe<String>;
+  username_not?: Maybe<String>;
+  username_in?: Maybe<String[] | String>;
+  username_not_in?: Maybe<String[] | String>;
+  username_lt?: Maybe<String>;
+  username_lte?: Maybe<String>;
+  username_gt?: Maybe<String>;
+  username_gte?: Maybe<String>;
+  username_contains?: Maybe<String>;
+  username_not_contains?: Maybe<String>;
+  username_starts_with?: Maybe<String>;
+  username_not_starts_with?: Maybe<String>;
+  username_ends_with?: Maybe<String>;
+  username_not_ends_with?: Maybe<String>;
   email?: Maybe<String>;
   email_not?: Maybe<String>;
   email_in?: Maybe<String[] | String>;
@@ -252,6 +268,8 @@ export interface UserWhereInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  username?: Maybe<String>;
+  email?: Maybe<String>;
 }>;
 
 export interface NationCreateInput {
@@ -268,6 +286,7 @@ export interface UserCreateOneWithoutNationsInput {
 
 export interface UserCreateWithoutNationsInput {
   id?: Maybe<ID_Input>;
+  username: String;
   email: String;
   password: String;
 }
@@ -286,6 +305,7 @@ export interface UserUpdateOneRequiredWithoutNationsInput {
 }
 
 export interface UserUpdateWithoutNationsDataInput {
+  username?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
 }
@@ -302,6 +322,7 @@ export interface NationUpdateManyMutationInput {
 
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
+  username: String;
   email: String;
   password: String;
   nations?: Maybe<NationCreateManyWithoutOwnerInput>;
@@ -321,6 +342,7 @@ export interface NationCreateWithoutOwnerInput {
 }
 
 export interface UserUpdateInput {
+  username?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
   nations?: Maybe<NationUpdateManyWithoutOwnerInput>;
@@ -418,6 +440,7 @@ export interface NationUpdateManyDataInput {
 }
 
 export interface UserUpdateManyMutationInput {
+  username?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
 }
@@ -477,12 +500,14 @@ export interface NationNullablePromise
 
 export interface User {
   id: ID_Output;
+  username: String;
   email: String;
   password: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
   nations: <T = FragmentableArray<Nation>>(args?: {
@@ -500,6 +525,7 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   nations: <T = Promise<AsyncIterator<NationSubscription>>>(args?: {
@@ -517,6 +543,7 @@ export interface UserNullablePromise
   extends Promise<User | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
   nations: <T = FragmentableArray<Nation>>(args?: {
@@ -751,6 +778,7 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  username: String;
   email: String;
   password: String;
 }
@@ -759,6 +787,7 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
 }
@@ -767,6 +796,7 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
 }

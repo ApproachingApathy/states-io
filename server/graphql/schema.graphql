@@ -21,9 +21,9 @@ type Query {
 }
 
 # APP Only Definitions
-type AuthReturn {
+type AuthPayload {
 	user: User
-	isLoginSuccessful: Bool!
+	isLoginSuccessful: Boolean!
 	error: String!
 	token: String
 }
@@ -44,5 +44,5 @@ type Mutation {
 	createNation(data: NationCreateInput): Nation!
 	deleteUser(id: ID!): User!
 	deleteNation(id: ID!): Nation!
-	authLogin(email: String!, password: String!): AuthReturn
+	authLogin(email: String!, password: String!): AuthPayload
 }
