@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ApolloClient, gql } from "apollo-boost";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { HttpLink } from "apollo-link-http";
+import { ApolloProvider } from "@apollo/react-hooks";
+
+import LoginPage from "./pages/login/login.page";
+
+import "./global.css";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	console.log("hello");
+	const cache = new InMemoryCache();
+	const link = new HttpLink({
+		uri: "http://localhost:4000"
+	});
+
+	const client = new ApolloClient({
+		link,
+		cache
+	});
+
+	return (
+		<ApolloProvider client={client}>
+			<div className="App container-column justify-center">
+				<LoginPage />
+			</div>
+		</ApolloProvider>
+	);
 }
 
 export default App;
