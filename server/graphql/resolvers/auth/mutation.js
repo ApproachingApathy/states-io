@@ -22,14 +22,14 @@ async function authLogin(parent, args, context, info) {
 		.then(obj => {
 			return {
 				user: obj.user,
-				isLoginSuccesful: obj.isMatch,
+				isLoginSuccessful: obj.isMatch,
 				error: obj.isMatch ? "" : "Email or password incorrect",
 				token: obj.token
 			};
 		})
 		.catch(err => ({
 			user: null,
-			isLoginSuccesful: false,
+			isLoginSuccessful: false,
 			error: "An error occured, try again later.",
 			token: null
 		}));
