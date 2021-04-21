@@ -7,7 +7,7 @@
     "dev-start": "nodemon index.js"
   },
   "dependencies": {
-    "apollo-server": "^2.9.16",
+    "apollo-server": "^2.14.2",
     "bcrypt": "^3.0.8",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
